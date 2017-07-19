@@ -1,3 +1,7 @@
+# This Dockerfile uses the Centos image
+# Version： 01
+# Author： kbsonlong
+# Soft_Version： nginx-1.12.1  php-7.1.7
 FROM centos
 RUN mkdir /server/ -p
 ADD lnmp.tar.gz /server/
