@@ -1,6 +1,7 @@
 #!/bin/bash
 #  "bash docker-project_init.sh 82"
 #  Script_Name: docker-project_init.sh
+#  运行于项目环境（测试或者生产）
 
 source config.ini
 source .version.ini
