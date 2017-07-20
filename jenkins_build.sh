@@ -5,6 +5,7 @@
 # Version:  V0.1
 # Info   :  打包项目代码，构建docker镜像，push镜像到docker仓库
 
+start_time=`date +%s`
 source /usr/local/jenkins/home/scripts/config.ini
 source /usr/local/jenkins/home/scripts/.version.ini
 
@@ -28,3 +29,7 @@ docker push ${DOCKER_REGISTRY}:${DS_PORT}/${BASE_IMAGE}:${VERSION}
 
 ##查看上传镜像到Docker仓库是否成功
 curl -XGET http://${DOCKER_REGISTRY}:${DS_PORT}/v2/${BASE_IMAGE}/tags/list
+
+stop_time=`date +%s`
+
+echo "Build  takes $(((stop_time-start_time)/60)) minutes."
