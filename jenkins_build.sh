@@ -5,21 +5,19 @@
 # Version:  V0.1
 # Info   :  打包项目代码，构建docker镜像，push镜像到docker仓库
 
-DOCKER_REGISTRY=192.168.52.201          ##docker仓库地址
-DS_PORT=5000                            ##docker仓库端口
-JENKINS_HOME=/usr/local/jenkins/home/   ##Jenkins目录
-PROJECT_NAME=test                       ##Jenkins配置的项目名称
-PROJECT_WORKDIR=wwwroot                 ##项目实际生产工作目录
-BASE_IMAGE=np                           ##项目运行环境基础镜像
+source /usr/local/jenkins/home/scripts/config.ini
+source /usr/local/jenkins/home/scripts/.version.ini
 
-cd ${JENKINS_HOME}/workspace/${PROJECT_NAME}/ 
-test -e project.tar.gz ; mv project.tar.gz project-`date +%Y%m%d%H`.tar.gz 
+echo $VERSION
+cd ${JENKINS_HOME}/workspace/${PROJECT_NAME}/
+test -e project.tar.gz ; mv project.tar.gz project-`date +%Y%m%d%H`.tar.gz
 tar zcvf project.tar.gz ${PROJECT_WORKDIR}
 
 
 ###docker_build.sh
 ##Docker构建项目镜像
-set VERSION=v`date +%Y%m%d%H`
+
+cd ${JENKINS_HOME}/workspace/${PROJECT_NAME}/
 docker build -t ${BASE_IMAGE}:${VERSION} .
 
 ##标记项目镜像
