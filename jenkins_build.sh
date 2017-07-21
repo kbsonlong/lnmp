@@ -8,6 +8,7 @@
 source /usr/local/jenkins/home/scripts/config.ini
 source /usr/local/jenkins/home/scripts/.version.ini
 
+echo "VERSION=${VERSION}" >${JENKINS_HOME}scripts/.version.ini           ##固化版本信息，避免脚本执行是由于时间点改变，VERSION变量引用错误
 echo $VERSION
 cd ${JENKINS_HOME}/workspace/${PROJECT_NAME}/
 test -e project.tar.gz ; mv project.tar.gz project-`date +%Y%m%d%H`.tar.gz
